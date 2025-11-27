@@ -1,29 +1,61 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Days Since Last LTI</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-    .counter { font-size: 60px; color: #1a73e8; }
+    body {
+      background: transparent; /* match dashboard background */
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .widget-container {
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .counter-number {
+      font-size: 42px;
+      font-weight: 700;
+      color: #0078D4;
+      line-height: 1;
+    }
+
+    .counter-label {
+      margin-top: 8px;
+      font-size: 16px;
+      color: #333;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
-  <h2>Days Since Last LTI</h2>
-  <div class="counter" id="daysCounter"></div>
+  <div class="widget-container">
+    <div class="counter-number" id="daysCounter"></div>
+    <div class="counter-label">Days Since Last LTI</div>
+  </div>
 
   <script>
-    // Replace this with the date of the last LTI
-    const lastLTI = new Date("2025-10-29"); // 29 days ago today
+    // Last LTI date (29 days ago from today)
+    const lastLTI = new Date("2025-10-29");
 
     function updateCounter() {
       const today = new Date();
-      const diffTime = today - lastLTI; // difference in milliseconds
-      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); // convert to days
+      const diffTime = today - lastLTI;
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
       document.getElementById("daysCounter").innerText = diffDays;
     }
 
-    updateCounter(); // initial calculation
-    setInterval(updateCounter, 1000 * 60 * 60); // optional: recalc every hour
+    updateCounter(); // initial display
+    setInterval(updateCounter, 1000 * 60 * 60); // recalculates every hour
   </script>
 </body>
 </html>
